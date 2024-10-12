@@ -6,7 +6,7 @@ import gif from '../assets/loading.gif';
 import Image from 'next/image';
 
 export default function Editor({ entry }) {
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState(entry.content === "Default Entry" ? '' : entry.content || '');
   const [isLoading, setIsLoading] = useState(false);
   const [lastSaveTime, setLastSaveTime] = useState(null);
 
