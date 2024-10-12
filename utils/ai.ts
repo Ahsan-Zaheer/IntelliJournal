@@ -61,30 +61,55 @@ export const analyze = async (content) => {
 };
 
 
-export const qa = async (question, entries )=>{
-
-    const docs = entries.map((entry) =>
-        { 
-            return new Document({
-                 pageContent: entry.content,
-                 metadata: {id: entry.id, createdAt: entry.createdAt} 
-                })
-        });
+export const qa = async (question, entries) => {
+    // Check if entries array is empty
+    if (!entries || entries.length === 0) {
+        
         const model = new ChatOpenAI({
-            temperature: 0, 
-            modelName: 'gpt-4o-mini', 
-            apiKey: process.env.OPEN_AI_KEY 
+            temperature: 0,
+            modelName: 'gpt-4o-mini',
+            apiKey: process.env.OPEN_AI_KEY
         });
+
         const chain = loadQARefineChain(model);
-        const embeddings = new OpenAIEmbeddings({
-            openAIApiKey: process.env.OPEN_AI_KEY 
-        }
-        );
-        const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
-        const relevantDocs = await store.similaritySearch(question);
         const res = await chain.invoke({
-            input_documents: relevantDocs,
+            input_documents: 'Answer the question to the best of your ability.',
             question,
         });
+    
         return res.output_text;
     }
+
+    const docs = entries.map((entry) => {
+        return new Document({
+            pageContent: entry.content,
+            metadata: { id: entry.id, createdAt: entry.createdAt }
+        });
+    });
+
+    const model = new ChatOpenAI({
+        temperature: 0,
+        modelName: 'gpt-4o-mini',
+        apiKey: process.env.OPEN_AI_KEY
+    });
+
+    const chain = loadQARefineChain(model);
+    const embeddings = new OpenAIEmbeddings({
+        openAIApiKey: process.env.OPEN_AI_KEY
+    });
+
+    const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
+    const relevantDocs = await store.similaritySearch(question);
+    
+    // Proceed with chain invocation only if relevant documents exist
+    if (relevantDocs.length === 0) {
+        return "No relevant documents found to answer the question.";
+    }
+
+    const res = await chain.invoke({
+        input_documents: relevantDocs,
+        question,
+    });
+
+    return res.output_text;
+};
