@@ -1,0 +1,314 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+.links{
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.links:hover{
+    color: #f1c40f;
+}
+
+.home {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+.title{
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 55px;
+    text-align: center;
+
+}
+
+.sec-1{
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.disc{
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.61);
+    text-align: center;
+}
+
+.btn{
+    width: 170px;
+    background-color: #f1c40f;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.btn:hover{
+    background-color: #ffcc00;
+    width: 160px;
+}
+
+
+.sidebar{
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    align-items: start;
+    z-index: 99999;
+}
+
+.logo{
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    color: white;
+    margin-left: -15px;
+    
+}
+
+.dashboardLayout{
+    display: flex;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 49;
+   
+}
+
+.entry-page{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.sidebar-right{
+    width: 600px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-right h2{
+    font-size: 30px;
+    background-color: lightskyblue;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.sidebar-right li{
+    font-size: 17px;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    padding: 20px 25px;
+    justify-content: space-between;
+}
+
+.ques{
+    background-color: rgba(230, 230, 230, 0);
+    width: 400px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    margin-left: 5px;
+
+}
+
+.searchIco{
+    font-size: 30px;
+    color: rgb(131, 130, 130);
+}
+.answer{
+    background-color: white;
+    box-shadow:  1px 1px 5px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    /* height: 400px; */
+    border-radius: 10px;
+    padding: 20px 40px;
+    outline: none;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+}
+.closeBtn{
+    width: 100px;
+    height: 40px;
+    background-color: #ffcc00;
+    color: white;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+
+}
+.quesForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gif{
+    width: 70px;
+}
+/* Add this CSS to your global stylesheet or module */
+
+/* Base styles for the newEntry div */
+.newEntry {
+    position: relative;
+    background-color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Add a class for when loading is true */
+  .newEntry.loading {
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: linear-gradient(220deg, #f0f0f0, #e0e0e0);
+    background-size: 200% 100%;
+    animation: loadingWave 1.5s ease infinite;
+  }
+  
+  /* Keyframes for the wave animation */
+  @keyframes loadingWave {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+  .save{
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+  }
+
+  .cardTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 30;
+  }
+  .trash{
+    cursor: pointer;
+  }
+
+
+  .entryCard {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* Add a class for when loading is true */
+  .entryCard.loading {
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: linear-gradient(220deg, #f0f0f0, #e0e0e0);
+    background-size: 200% 100%;
+    animation: loadingWave 1.5s ease infinite;
+  }
+
+  #menu-toggle:checked ~ .sidebar {
+    transform: translateX(0);
+  }
+  #menu-toggle:checked ~ aside label #close-icon {
+    display: block; /* Show close icon when sidebar is open */
+  }
+  #menu-toggle:checked ~ #overlay {
+    display: block; /* Show dark overlay when sidebar is open */
+  }
+
+
+  .closeIcoS{
+    position: absolute;
+    right: -70px;
+    top: 10px;
+    color: white;
+  }
+
+  .signInBg{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  @media screen and (max-width: 750px){
+      .ques{
+        width: 200px;
+      }
+      .answer{
+        width: 500px;
+        padding: 20px 30px;
+        left: 15%;
+    }
+  }
+  
+@media screen and (max-width: 500px){
+    .sec-1{
+        width: 100%;
+        padding: 0px 20px;
+    }
+    .title{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .disc{
+        font-size: 20px;
+    }
+    .btn{
+        width: 150px;
+        height: 35px;
+    }
+    .sidebar{
+        width: 230px;
+    }
+    .sidebar-right{
+        width: 300px;
+    }
+    .sidebar-right h2{
+        font-size: 22px;
+    }
+    .sidebar-right li{
+        font-size: 10px;
+    }
+    .answer{
+        width: 300px;
+        padding: 20px 30px;
+        left: 10vw;
+    }
+
+}
